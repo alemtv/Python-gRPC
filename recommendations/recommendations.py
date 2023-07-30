@@ -31,10 +31,10 @@ books_by_category = {
 
 class RecommendationService(recommendations_pb2_grpc.RecommendationsServicer):
     def Recommend(self, request, context):
-        print(f'Request time: {datetime.utcnow().isoformat()} \n{request}')
         if request.category not in books_by_category:
             context.abort(grpc.StatusCode.NOT_FOUND, "Category not found")
 
+        print(f'Request time: {datetime.utcnow().isoformat()} {request.category}')
         books_for_category = books_by_category[request.category]
         num_results = min(request.max_results, len(books_for_category))
         books_to_recommend = random.sample(books_for_category, num_results)
