@@ -3,6 +3,7 @@ venv/
 pyvenv.cfg
 .venv/
 grpc-venv/
+.pytest_cache/
 
 # Compiled Python files
 *.pyc
